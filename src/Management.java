@@ -7,12 +7,12 @@ public class Management extends Fulltime{
     private static final int DEPARTMENT_HEAD = 2;
     private static final int DIRECTOR = 3;
 
-    private static final int MANAGER_COMPENSATION = 5000;
-    private static final int DEPARTMENT_HEAD_COMPENSATION = 9500;
-    private static final int DIRECTOR_COMPENSATION = 12000;
+    private static final double MANAGER_COMPENSATION = 192.31; // $5000 / pay period
+    private static final double DEPARTMENT_HEAD_COMPENSATION = 365.38; // $9500 / pay period
+    private static final double DIRECTOR_COMPENSATION = 461.54; // 12000 / pay period
 
     private String roleString; //role as a string
-    private int additionalCompensation;
+    private double additionalCompensation;
 
     /**
      * Creates a new Management, a specialized Fulltime Employee from profile, salary, role
@@ -54,7 +54,7 @@ public class Management extends Fulltime{
      */
     @Override
     public void calculatePayment(){
-        this.payment = ((double)(this.additionalCompensation + super.annualSalary)) / PAY_PERIODS_PER_YEAR;
+        this.payment = ((double)(super.annualSalary)) / PAY_PERIODS_PER_YEAR + this.additionalCompensation ;
     }
 
     /**
