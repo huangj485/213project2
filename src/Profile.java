@@ -3,7 +3,7 @@
  * @author Jerry Huang, Adrian Thamburaj
  */
 public class Profile {
-    private String name; //employee’s name in the form “lastname,firstname”
+    private String name; 
     private String department; //department code: CS, ECE, IT
     private Date dateHired;
 
@@ -19,24 +19,34 @@ public class Profile {
         this.dateHired = dateHired;
     }
 
+    /**
+     * toString function for Profile
+     * @return String that contains all relevant information for a Profile
+     */
     @Override
     public String toString() { 
         String ret_str = "";
         ret_str += this.name + "::";
         ret_str += this.department + "::";
         ret_str += dateHired.toString();
-        return ret_str;
+        return ret_str; 
     }
 
+    /**
+     * equals function for Profile
+     * @param obj Object to be compared with profile
+     * @return Boolean, true if equal, false if not
+     */
     @Override
     public boolean equals(Object obj) { 
         if (obj instanceof Profile){
-            if (obj.getName().equals(this.name) && obj.getDepartment().equals(this.department) && obj.getDateHired().equals(this.dateHired)){
+            Profile profile = (Profile) obj;
+            if (profile.getName().equals(this.name) && profile.getDepartment().equals(this.department) && profile.getDateHired().equals(this.dateHired)){
                 return true;
             }
         }
         return false;
-    } //compare name, department and dateHired
+    } 
 
     /**
      * Getter method for name

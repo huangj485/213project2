@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
  * @author Jerry Huang, Adrian Thamburaj
  */
 public class Employee {
-    protected static final int PAY_PERIODS_PER_YEAR = 26;
     protected static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,###,##0.00");
 
     private Profile profile;
@@ -25,12 +24,14 @@ public class Employee {
     public void calculatePayment() {} //i exist only because i am told to 
 
     /** equals function for Employee
+     * @param obj The object to be compared to Employee
      * @return A boolean, true if equivalent, false if not
      */
     @Override
     public boolean equals(Object obj) { 
         if (obj instanceof Employee){
-            if (obj.getProfile().equals(this.profile)){
+            Employee obj2 = (Employee) obj;
+            if (obj2.getProfile().equals(this.profile)){
                 return true;
             }
         }

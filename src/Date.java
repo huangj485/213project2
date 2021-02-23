@@ -1,4 +1,3 @@
-package src;
 import java.util.Calendar;
 /** Date: this class defines the properties of a Date object, specifically year, month, day.
  * @author Jerry Huang, Adrian Thamburaj
@@ -107,23 +106,6 @@ public class Date implements Comparable<Date>{
         }
     }
 
-    /** Compares a date with this date
-     * @param date The date to compare with this date
-     * @return A boolean - true if this Date is less than the given parameter date. False otherwise
-     */
-    public boolean compare(Date date){ //returns true if this Date is less than date
-        if (this.year > date.getYear()){
-            return false; //year too far
-        } else if(this.year == date.getYear()){ //year equal
-            if (this.month > date.getMonth()){
-                return false; //month too far
-            } else if(this.month == date.getMonth() && this.day > date.getDay()){ //year equal already, checking month and day
-                return false; //day too far
-            }
-        }
-        return true;
-    }
-
     //GETTER METHODS
 
     /** Returns Date in the format mm/dd/yyyy
@@ -159,173 +141,56 @@ public class Date implements Comparable<Date>{
         return this.day;
     }
 
-    //TESTBED
-    /** Testbed main for the isValid method
-     * Tests 30 dates against their correct outputs for isValid.
-     * @param args Arguments for main function
-     */
-    public static void main(String[]args){
-        //testcase1 "12/31/1899"
-        //date too old
-        test(false, "12/31/1899");
-
-        //testcase2 "3/1/2021"
-        //date in the future
-        test(false, "12/1/2021");
-
-        //testcase3 "4/31/2019"
-        //there are 30 days in April
-        test(false, "4/31/2019");
-
-        //testcase4 "1/32/2000"
-        //numbers of days too high
-        test(false, "1/32/2000");
-
-        //testcase5 "-7/19/2000"
-        //negative month
-        test(false, "-7/19/2000");
-
-        //testcase6 = "7/-19/2000"
-        //negative day
-        test(false, "7/-19/2020");
-
-        //testcase7 = "7/19/-2000"
-        //negative year
-        test(false, "7/19/-2000");
-        
-        //testcase8 = "13/13/2013"
-        //invalid month
-        test(false, "13/13/2013");
-
-        //testcase9 = "12/13/2022"
-        //year in the future
-        test(false, "12/13/2022");
-
-        //testcase10 = "1/1/1900"
-        //this is the first allowed date
-        test(true, "1/1/1900");
-
-        //testcase11 = "2/29/2019"
-        //bad leapyear
-        test(false, "2/29/2019");
-        
-        //testcase12 = "2/29/2020"
-        //good leap year
-        test(true, "2/29/2020");
-
-        //testcase13 = "2/29/1988"
-        //good leap year
-        test(true, "2/29/1988");
-
-        //testcase14 = "2/29/1986"
-        //bad leap year
-        test(false, "2/29/1986");
-        
-        Calendar calendar = Calendar.getInstance();
-        int currentYear  = calendar.get(Calendar.YEAR);
-        int currentMonth = calendar.get(Calendar.MONTH)+1; //0-indexed months.
-        int currentDay   = calendar.get(Calendar.DATE);
-        
-        //testcase15 = today
-        //Last valid day
-        test(true, currentMonth+"/"+currentDay+"/"+currentYear);
-
-        //testcase16 = "9/9/1999"
-        //correct, normal test case
-        test(true, "9/9/1999");
-
-        //testcase17 = "9/9/99"
-        //incorrect year format
-        test(false, "9/9/99");
-
-        //testcase18 = "09/09/1999"
-        //should be fine with zeroes
-        test(true, "09/09/1999");
-
-        //testcase19 = "1/32/2020"
-        //Test cases 19-30 are for the days exactly one above maximum
-        test(false, "1/32/2020");
-
-        //testcase20 = "2/30/2020"
-        test(false, "2/30/2020");
-
-        //testcase21 = "3/32/2020"
-        test(false, "3/32/2020");
-
-        //testcase22 = "4/31/2020"
-        test(false, "4/31/2020");
-
-        //testcase23 = "5/32/2020"
-        test(false, "5/32/2020");
-        
-        //testcase24 = "6/31/2020"
-        test(false, "6/31/2020");
-
-        //testcase25 = "7/32/2020"
-        test(false, "7/32/2020");
-
-        //testcase26 = "8/32/2020"
-        test(false, "8/32/2020");
-        
-        //testcase27 = "9/31/2020"
-        test(false, "9/31/2020");
-
-        //testcase28 = "10/32/2020"
-        test(false, "10/32/2020");
-        
-        //testcase29 = "11/31/2020"
-        test(false, "11/31/2020");
-        
-        //testcase30 = "12/32/2020"
-        test(false, "12/32/2020");
-        
-    }
-
-    /** Helper method for testbed main
-     * @param actual The expected boolean value
-     * @param testDate The String representing the date to be tested
-     */
-    //helper method for testbed
-    private static void test(boolean actual, String testDate){
-        Date date = new Date(testDate);
-        System.out.println("Test Date: " + date.toString() + ", Expected: " + actual + ", Result: " + date.isValid());
-    }
-
     /** compareTo function override
      * Overrides the compareTo function to compare the values of Dates. -1 if lower, 0 if the same, 1 if higher.
+     * @param date Date to be compared
      */
     @Override
     public int compareTo(Date date){
-        if(this.year > date.year){
+        if(this.year > date.getYear()){
             return 1;
         }
 
-        if(this.year < date.year){
+        if(this.year < date.getYear()){
             return -1;
         }
 
         //year is equal
 
-        if(this.month > date.month){
+        if(this.month > date.getMonth()){
             return 1;
         }
 
-        if(this.month < date.month){
+        if(this.month < date.getMonth()){
             return -1;
         }
 
         //month is equal
 
-        if(this.day > date.day){
+        if(this.day > date.getDay()){
             return 1;
         }
 
-        if(this.day < date.day){
+        if(this.day < date.getDay()){
             return -1;
         }
 
         //day is equal
 
         return 0;
+    }
+
+    /**
+     * equals function for Date
+     */
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Date){
+            Date otherDate = (Date) obj;
+            if (otherDate.compareTo(this) == 0){
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -10,17 +10,6 @@ public class Parttime extends Employee{
     private double hourlyRate;
     private int hours;
 
-    /** Creates a Parttime employee from profile, hourlyRate, hours
-     * @param profile Profile to be set
-     * @param hourlyRate hourlyRate to be set
-     * @param hours hours to be set
-     */
-    public Parttime(Profile profile, double hourlyRate, int hours){
-        super(profile);
-        this.hourlyRate = hourlyRate;
-        this.hours = hours;
-    }
-
     /** Creates a Parttime employee from profile, hourlyRate
      * @param profile Profile to be set
      * @param hourlyRate hourlyRate to be set
@@ -30,7 +19,7 @@ public class Parttime extends Employee{
         this.hourlyRate = hourlyRate;
     }
 
-    /** Creates a Parttime employee from profile, hourlyRate
+    /** Creates a Parttime employee from profile, hours
      * @param profile Profile to be set
      * @param hours hours to be set
      */
@@ -76,12 +65,15 @@ public class Parttime extends Employee{
     }
 
     /**
-     * 
+     * equals function for Parttime
+     * @param obj Object to be compared to Parttime instance
+     * @return Boolean, true if equivalent, false if not
      */
     @Override
     public boolean equals(Object obj) { 
         if (obj instanceof Parttime){
-            if (obj.getProfile().equals(super.getProfile()) && obj.hourlyRate == this.hourlyRate){
+            Parttime obj2 = (Parttime) obj;
+            if (obj2.getProfile().equals(this.getProfile())){
                 //on purposely does not check for hours!
                 return true;
             }
@@ -89,6 +81,10 @@ public class Parttime extends Employee{
         return false;
     } 
 
+    /**
+     * toString function for Parttime 
+     * @return String containing all the relevant information for the Parttime instance
+     */
     @Override
     public String toString(){
         String ret_str = "";
