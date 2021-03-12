@@ -199,4 +199,12 @@ public class Company {
         
         return sorted;
     }
+
+    /**
+     * Exports the database
+     * @return a String to be saved to a txt file
+     */
+    public String exportDatabase(){
+        return this.print();
+    }
 }

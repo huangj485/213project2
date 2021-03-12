@@ -12,6 +12,16 @@ public class CompanyTest {
             Employee e = new Employee(new Profile("name" + String.valueOf(i), "CS",new Date()));
             assertTrue(company.add(e));
         } //adding multiple to test grow
+        Fulltime f1 = new Fulltime(new Profile("name", "CS",new Date()), 1);
+        assertTrue(company.add(f1));
+        Management m1 = new Management(new Profile("name", "CS",new Date()), 1, 1);
+        assertTrue(company.add(m1));
+        Management m2 = new Management(new Profile("name", "CS",new Date()), 1, 2);
+        assertTrue(company.add(m2));
+        Management m3 = new Management(new Profile("name", "CS",new Date()), 1, 3);
+        assertTrue(company.add(m3));
+        Parttime p1 = new Parttime(new Profile("name", "CS",new Date()), 5);
+        assertTrue(company.add(p1));
     }
 
     @org.junit.Test
@@ -30,10 +40,17 @@ public class CompanyTest {
         Company company = new Company();
         Parttime p1 = new Parttime(new Profile("name", "CS",new Date()), 10.00);
         Parttime p2 = new Parttime(new Profile("name2", "CS",new Date()), 10.00);
+        Management m1 = new Management(new Profile("name", "CS",new Date()), 1, 1);
+        Fulltime f1 = new Fulltime(new Profile("name", "CS",new Date()), 1);
+        company.add(f1);
+        company.add(m1);
         company.add(p1);
         p1.setHours(50);
         assertTrue(company.setHours(p1)); //testing setting hours
         assertFalse(company.setHours(p2)); //testing against setting of a nonexistent employee
         assertTrue(company.setHours(p1)); //testing setting hours to the same value; should still be true
+        assertFalse(company.setHours(m1)); 
+        assertFalse(company.setHours(f1));
+
     }
 }
