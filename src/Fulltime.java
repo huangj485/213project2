@@ -2,8 +2,10 @@
  * Fulltime class extends the Employee class and includes specific data and operations to a full-time employee.
  * @author Jerry Huang, Adrian Thamburaj
  */
+import java.text.DecimalFormat;
 public class Fulltime extends Employee {
-    protected static final int PAY_PERIODS_PER_YEAR = 26;
+    private static final int PAY_PERIODS_PER_YEAR = 26;
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,###,##0.00");
 
     protected int annualSalary;
 

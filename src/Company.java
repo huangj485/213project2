@@ -22,7 +22,7 @@ public class Company {
      * @return An integer - the index if successfully found, -1 if not
      */
     private int find(Employee employee) { 
-        for (int i=0; i<this.numEmployee; i++){
+        for (int i = 0; i < this.numEmployee; i++){
             if (employee.equals(this.emplist[i])){
                 return i;
             }
@@ -34,7 +34,7 @@ public class Company {
      */
     private void grow() { 
         Employee[] tempList = new Employee[this.numEmployee + Company.INIT_SIZE];
-        for (int i=0; i<this.numEmployee; i++){
+        for (int i = 0; i < this.numEmployee; i++){
             tempList[i] = this.emplist[i];
         }
         this.emplist = tempList;
@@ -67,7 +67,7 @@ public class Company {
         if (index == -1){
             return false;
         }
-        for (int i=index; i<numEmployee-1; i++){
+        for (int i = index; i < numEmployee - 1; i++){
             this.emplist[i] = this.emplist[i+1];
         }
         this.emplist[numEmployee-1] = null;
@@ -93,26 +93,30 @@ public class Company {
     /** Calculates payments for all Employees in Company
      */
     public void processPayments() { 
-        for (int i=0; i<this.numEmployee; i++){
+        for (int i = 0; i < this.numEmployee; i++){
             this.emplist[i].calculatePayment();
         }
     } 
 
     /** Prints earning statements for all employees 
      */
-    public void print() {
+    public String print() {
+        String toReturn = "";
         for(int i = 0; i < this.numEmployee; i++){
-            System.out.println(emplist[i].toString());
+            toReturn += this.emplist[i].toString() + "\n";
         }
+        return toReturn;
     }
 
     /** Prints earning statements for all employees organizing by department
      */
-    public void printByDepartment() {
+    public String printByDepartment() {
+        String toReturn = "";
         int [] sorted = sortByDepartment();
         for(int i = 0; i < numEmployee; i++){
-            System.out.println(this.emplist[sorted[i]].toString());
+            toReturn += this.emplist[sorted[i]].toString() + "\n";
         }
+        return toReturn;
     } 
 
     /**
@@ -148,11 +152,13 @@ public class Company {
 
     /** Prints earning statements by date hired
      */
-    public void printByDate() {
+    public String printByDate() {
+        String toReturn = "";
         int [] sorted = sortByDate();
         for(int i = 0; i < numEmployee; i++){
-            System.out.println(this.emplist[sorted[i]].toString());
+            toReturn += this.emplist[sorted[i]].toString() + "\n";
         }
+        return toReturn;
     }
 
     /**

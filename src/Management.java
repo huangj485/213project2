@@ -2,7 +2,10 @@
  * Management class extends the Fulltime class and includes specific data and operations to a full-time employee with a management role.
  * @author Jerry Huang, Adrian Thamburaj
  */
+import java.text.DecimalFormat;
 public class Management extends Fulltime{
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,###,##0.00");
+    private static final int PAY_PERIODS_PER_YEAR = 26;
     private static final int MANAGER = 1;
     private static final int DEPARTMENT_HEAD = 2;
     private static final int DIRECTOR = 3;

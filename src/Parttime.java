@@ -2,10 +2,12 @@
  * Parttime class extends the Employee class and includes the hourly rate and hours worked of a part-time employee, as well as relevant functions.
  * @author Jerry Huang, Adrian Thamburaj
  */
+import java.text.DecimalFormat;
 public class Parttime extends Employee{
     private static final int MAX_HOURS_PER_PAY_PERIOD = 100;
     private static final int OVERTIME_HOURS = 80; //greater than 80 counts as overtime
     private static final double OVERTIME_MULTIPLIER = 1.5;
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,###,##0.00");
 
     private double hourlyRate;
     private int hours;
